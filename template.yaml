@@ -1,0 +1,18 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  SQS
+Resources:
+  SQSQueue:
+    Type: AWS::SQS::Queue
+    Properties:
+      QueueName: "mySQSQueue.fifo"
+      FifoQueue: true
+      ContentBasedDeduplication: true
+      ReceiveMessageWaitTimeSeconds: 5
+
+
+Outputs:
+  SQSQueueUrl:
+    Description: SQS Url
+    Value: !Ref SQSQueue
